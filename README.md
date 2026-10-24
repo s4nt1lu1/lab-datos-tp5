@@ -18,7 +18,32 @@ uv venv
 #### Instalar dependencias
 uv pip install -r requirements.txt
 
-## Estructura del proyecto
+Laboratorio de Datos II - TP5
+
+Proyecto de la materia "Laboratorio de datos II", perteneciente a la carrera de Ingenieria en Inteligencia Artificial de la Universidad Nacional del Litoral.
+
+El objetivo de este trabajo es implementar un pipeline reproducible de análisis de datos para estimar la edad de moluscos (Abalone) a partir de medidas físicas.
+
+Requisitos y Entorno
+
+Versión de Python: 3.13.7
+
+Reproducción del Entorno Virtual
+
+Se deben instalar las dependencias, para ello ejecutar:
+
+Crear el entorno virtual
+
+uv venv
+
+
+Instalar dependencias
+
+uv pip install -r requirements.txt
+
+
+Estructura del proyecto
+
 abalone_project/
 ├── data/
 │   ├── raw/                # Datos originales sin modificar
