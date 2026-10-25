@@ -1,0 +1,2 @@
+experiment_id,timestamp,model_version,hyperparameters,mae,rmse,r2
+EXP-01,2026-10-24 22:09:34,v1,"{""n_estimators"": 100, ""max_depth"": 15, ""random_state"": 42}",1.5589,2.2467,0.5787
