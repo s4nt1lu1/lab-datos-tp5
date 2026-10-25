@@ -38,5 +38,13 @@ Al integrar primero `exp/hiperparametros` a `main` y luego ejecutar `git merge e
 <<<<<<< HEAD
 EXP-02,2026-10-25 04:18:19,v2,"{""n_estimators"": 200, ""max_depth"": 8, ""random_state"": 42}",1.5281,2.217,0.5898
 =======
+EXP-01,2026-10-25 04:35:31,v1,"{""n_estimators"": 100, ""max_depth"": 15, ""random_state"": 42}",1.5589,2.2467,0.5787
 EXP-03,2026-10-25 04:37:48,v3,"{""n_estimators"": 150, ""learning_rate"": 0.05, ""max_depth"": 4, ""random_state"": 42}",1.5239,2.2048,0.5943
 >>>>>>> exp/otro-algoritmo
+```
+
+### ¿Como resolvimos el conflicto?
+En results/experiments_log.csv y README.md: Se conservaron los registros de ambos experimentos nuevos (EXP-02 y EXP-03) en orden secuencial, se eliminó la fila duplicada accidental de EXP-01 (04:35:31) y se borraron las líneas de los marcadores (<<<<<<<, =======, >>>>>>>), ya que la tabla debe preservar todas las pruebas válidas para compararlas
+
+En src/train_model.py: Se conservó la versión de exp/otro-algoritmo (v3 con GradientBoostingRegressor) usando git checkout --theirs src/train_model.py, dado que fue el modelo con mejor desempeño en test (R^2=0.5943)
+
