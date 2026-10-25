@@ -5,23 +5,24 @@ import os
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-# Rutas como strings
+# Rutas para la versión v3 (otro algoritmo)
 DATA_PATH = "data/processed/abalone_clean.csv"
-MODEL_PATH = "models/model_v1.pkl"
-METRICS_PATH = "results/metrics_v1.json"
+MODEL_PATH = "models/model_v3.pkl"
+METRICS_PATH = "results/metrics_v3.json"
 LOG_PATH = "results/experiments_log.csv"
 
-# Parámetros reproducibles
+# Parámetros reproducibles (Experimento 3: GradientBoostingRegressor)
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
-N_ESTIMATORS = 100
-MAX_DEPTH = 15
+N_ESTIMATORS = 150
+LEARNING_RATE = 0.05
+MAX_DEPTH = 4
 
 
 def train():
@@ -35,16 +36,17 @@ def train():
       X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE
   )
 
-  # Pipeline
+  # Pipeline con otro algoritmo
   hyperparams = {
       "n_estimators": N_ESTIMATORS,
+      "learning_rate": LEARNING_RATE,
       "max_depth": MAX_DEPTH,
       "random_state": RANDOM_STATE,
   }
 
   pipeline = Pipeline([
       ("scaler", StandardScaler()),
-      ("regressor", RandomForestRegressor(**hyperparams)),
+      ("regressor", GradientBoostingRegressor(**hyperparams)),
   ])
 
   pipeline.fit(X_train, y_train)
@@ -61,8 +63,8 @@ def train():
   # guardo métricas
   os.makedirs("results", exist_ok=True)
   metrics_data = {
-      "model_version": "v1",
-      "algorithm": "RandomForestRegressor",
+      "model_version": "v3",
+      "algorithm": "GradientBoostingRegressor",
       "random_state": RANDOM_STATE,
       "hyperparameters": hyperparams,
       "metrics": {
@@ -91,9 +93,9 @@ def train():
     if not file_exists:
       writer.writeheader()
     writer.writerow({
-        "experiment_id": "EXP-01",
+        "experiment_id": "EXP-03",
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "model_version": "v1",
+        "model_version": "v3",
         "hyperparameters": json.dumps(hyperparams),
         "mae": round(mae, 4),
         "rmse": round(rmse, 4),

@@ -1,0 +1,16 @@
+{
+    "model_version": "v3",
+    "algorithm": "GradientBoostingRegressor",
+    "random_state": 42,
+    "hyperparameters": {
+        "n_estimators": 150,
+        "learning_rate": 0.05,
+        "max_depth": 4,
+        "random_state": 42
+    },
+    "metrics": {
+        "MAE": 1.5239,
+        "RMSE": 2.2048,
+        "R2": 0.5943
+    }
+}
