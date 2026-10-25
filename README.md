@@ -56,3 +56,8 @@ abalone_project/
 ├── README.md               
 └── requirements.txt
 ```
+
+## Resultados
+
+- **EXP-01 (`model_v1` - RandomForestRegressor `n_estimators=100, max_depth=15`):** MAE = 1.5589 | RMSE = 2.2467 | R² = 0.5787
+- **EXP-02 (`model_v2` - RandomForestRegressor `n_estimators=200, max_depth=8`):** MAE = 1.5281 | RMSE = 2.2170 | R² = 0.5898
