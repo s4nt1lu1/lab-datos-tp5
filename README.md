@@ -61,3 +61,5 @@ abalone_project/
 
 - **EXP-01 (`model_v1` - RandomForestRegressor `n_estimators=100, max_depth=15`):** MAE = 1.5589 | RMSE = 2.2467 | R² = 0.5787
 - **EXP-02 (`model_v2` - RandomForestRegressor `n_estimators=200, max_depth=8`):** MAE = 1.5281 | RMSE = 2.2170 | R² = 0.5898
+- **EXP-03 (`model_v3` - GradientBoostingRegressor `n_estimators=150, lr=0.05, max_depth=4`):** MAE = 1.5239 | RMSE = 2.2048 | R² = 0.5943
+

@@ -24,3 +24,19 @@ En la rama `exp/hiperparametros` se entrenó una nueva versión del modelo (`v2`
 3. **Comparación de desempeño obtenida:**
    - **Modelo `v1` (`n_estimators=100, max_depth=15`):** `MAE = 1.5589` | `RMSE = 2.2467` | `R2 = 0.5787`
    - **Modelo `v2` (`n_estimators=200, max_depth=8`):** `MAE = 1.5281` | `RMSE = 2.2170` | `R2 = 0.5898` *(mejora en las tres métricas).*
+
+
+## Ejercicio 4 (Parte 2): Rama `exp/otro-algoritmo` y Resolución Manual de Conflictos
+### 1. Cambios realizados en la rama `exp/otro-algoritmo` (`model_v3`)
+Partiendo del `main` original, se modificó `src/train_model.py` reemplazando `RandomForestRegressor` por **`GradientBoostingRegressor`** (`n_estimators=150`, `learning_rate=0.05`, `max_depth=4`, `random_state=42`), guardando `models/model_v3.pkl`, `results/metrics_v3.json` y la fila `EXP-03` en `results/experiments_log.csv`:
+- **Resultado obtenido (`v3`):** `MAE = 1.5239` | `RMSE = 2.2048` | `R2 = 0.5943` (mejor modelo de los tres experimentos).
+
+### 2. Qué mostraban los archivos en conflicto al integrar la segunda rama a `main`
+Al integrar primero `exp/hiperparametros` a `main` y luego ejecutar `git merge exp/otro-algoritmo`, Git detuvo la fusión automática de tres vías (*three-way merge*) e insertó los marcadores de conflicto porque ambas ramas habían modificado las mismas líneas a partir del mismo ancestro común.
+
+```text
+<<<<<<< HEAD
+EXP-02,2026-10-25 04:18:19,v2,"{""n_estimators"": 200, ""max_depth"": 8, ""random_state"": 42}",1.5281,2.217,0.5898
+=======
+EXP-03,2026-10-25 04:37:48,v3,"{""n_estimators"": 150, ""learning_rate"": 0.05, ""max_depth"": 4, ""random_state"": 42}",1.5239,2.2048,0.5943
+>>>>>>> exp/otro-algoritmo
