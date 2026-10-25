@@ -30,6 +30,14 @@ Para hacer las transforamciones de los datos y generar el dataset limpio:
 python src/preprocess.py
 ```
 
+### Entrenamiento y Evaluación
+
+Para entrenar el modelo, evaluar sus métricas y guardar los resultados:
+
+```bash
+python src/train_model.py
+```
+
 ## Estructura del proyecto
 
 ```text
