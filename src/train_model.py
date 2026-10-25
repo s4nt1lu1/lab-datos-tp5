@@ -11,17 +11,17 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-# Rutas como strings
+# Rutas actualizadas para la versión v2
 DATA_PATH = "data/processed/abalone_clean.csv"
-MODEL_PATH = "models/model_v1.pkl"
-METRICS_PATH = "results/metrics_v1.json"
+MODEL_PATH = "models/model_v2.pkl"
+METRICS_PATH = "results/metrics_v2.json"
 LOG_PATH = "results/experiments_log.csv"
 
-# Parámetros reproducibles
+# Parámetros reproducibles (Experimento 2: nuevos hiperparámetros)
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
-N_ESTIMATORS = 100
-MAX_DEPTH = 15
+N_ESTIMATORS = 200
+MAX_DEPTH = 8
 
 
 def train():
@@ -61,7 +61,7 @@ def train():
   # guardo métricas
   os.makedirs("results", exist_ok=True)
   metrics_data = {
-      "model_version": "v1",
+      "model_version": "v2",
       "algorithm": "RandomForestRegressor",
       "random_state": RANDOM_STATE,
       "hyperparameters": hyperparams,
@@ -91,9 +91,9 @@ def train():
     if not file_exists:
       writer.writeheader()
     writer.writerow({
-        "experiment_id": "EXP-01",
+        "experiment_id": "EXP-02",
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "model_version": "v1",
+        "model_version": "v2",
         "hyperparameters": json.dumps(hyperparams),
         "mae": round(mae, 4),
         "rmse": round(rmse, 4),
