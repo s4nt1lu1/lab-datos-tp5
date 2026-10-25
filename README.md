@@ -22,6 +22,14 @@ uv venv
 uv pip install -r requirements.txt
 ```
 
+## Ejecución del Pipeline
+
+### Preprocesamiento 
+Para hacer las transforamciones de los datos y generar el dataset limpio:
+```bash
+python src/preprocess.py
+```
+
 ## Estructura del proyecto
 
 ```text

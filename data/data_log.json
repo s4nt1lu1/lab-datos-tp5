@@ -1,0 +1,11 @@
+{
+    "version": "v1",
+    "created_at": "24-10-2026",
+    "source": "data/raw/abalone_raw.csv",
+    "target": "data/processed/abalone_clean.csv",
+    "transformations": [
+        "agrego feature age = rings + 1.5",
+        "filtro outliers: removi datos con height <= 0 o height > 0.4",
+        "one-hot encode 'sex'"
+    ]
+}
