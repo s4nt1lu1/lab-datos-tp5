@@ -3,3 +3,5 @@ EXP-01,2026-10-24 22:09:34,v1,"{""n_estimators"": 100, ""max_depth"": 15, ""rand
 EXP-02,2026-10-25 04:18:19,v2,"{""n_estimators"": 200, ""max_depth"": 8, ""random_state"": 42}",1.5281,2.217,0.5898
 EXP-03,2026-10-25 04:37:48,v3,"{""n_estimators"": 150, ""learning_rate"": 0.05, ""max_depth"": 4, ""random_state"": 42}",1.5239,2.2048,0.5943
 
+EXP-04,2026-10-25 21:38:19,v4,"{""n_neighbors"": 10, ""weights"": ""distance""}",1.5742,2.3323,0.546
+EXP-04,2026-10-25 21:41:48,v4,"{""n_neighbors"": 10, ""weights"": ""distance""}",1.5742,2.3323,0.546
