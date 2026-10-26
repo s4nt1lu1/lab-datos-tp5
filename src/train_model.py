@@ -5,25 +5,23 @@ import os
 import joblib
 import numpy as np
 import pandas as pd
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-# Rutas para la versión v3 (otro algoritmo)
+# Rutas para la versión v4 (KNN)
 DATA_PATH = "data/processed/abalone_clean.csv"
-MODEL_PATH = "models/model_v3.pkl"
-METRICS_PATH = "results/metrics_v3.json"
+MODEL_PATH = "models/model_v4.pkl"
+METRICS_PATH = "results/metrics_v4.json"
 LOG_PATH = "results/experiments_log.csv"
 
-# Parámetros reproducibles (Experimento 3: GradientBoostingRegressor)
+# Parámetros reproducibles (Experimento 4: KNeighborsRegressor)
 RANDOM_STATE = 42
 TEST_SIZE = 0.2
-N_ESTIMATORS = 150
-LEARNING_RATE = 0.05
-MAX_DEPTH = 4
-
+N_NEIGHBORS = 10
+WEIGHTS = "distance"
 
 def train():
   df = pd.read_csv(DATA_PATH)
@@ -35,18 +33,15 @@ def train():
   X_train, X_test, y_train, y_test = train_test_split(
       X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE
   )
-
-  # Pipeline con otro algoritmo
+  # Pipeline con KNN (el escalado SÍ importa: KNN usa distancias)
   hyperparams = {
-      "n_estimators": N_ESTIMATORS,
-      "learning_rate": LEARNING_RATE,
-      "max_depth": MAX_DEPTH,
-      "random_state": RANDOM_STATE,
+      "n_neighbors": N_NEIGHBORS,
+      "weights": WEIGHTS,
   }
 
   pipeline = Pipeline([
       ("scaler", StandardScaler()),
-      ("regressor", GradientBoostingRegressor(**hyperparams)),
+      ("regressor", KNeighborsRegressor(**hyperparams)),
   ])
 
   pipeline.fit(X_train, y_train)
@@ -63,8 +58,8 @@ def train():
   # guardo métricas
   os.makedirs("results", exist_ok=True)
   metrics_data = {
-      "model_version": "v3",
-      "algorithm": "GradientBoostingRegressor",
+      "model_version": "v4",
+      "algorithm": "KNeighborsRegressor",
       "random_state": RANDOM_STATE,
       "hyperparameters": hyperparams,
       "metrics": {
@@ -93,9 +88,9 @@ def train():
     if not file_exists:
       writer.writeheader()
     writer.writerow({
-        "experiment_id": "EXP-03",
+        "experiment_id": "EXP-04",
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "model_version": "v3",
+        "model_version": "v4",
         "hyperparameters": json.dumps(hyperparams),
         "mae": round(mae, 4),
         "rmse": round(rmse, 4),

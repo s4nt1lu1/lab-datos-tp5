@@ -1,0 +1,14 @@
+{
+    "model_version": "v4",
+    "algorithm": "KNeighborsRegressor",
+    "random_state": 42,
+    "hyperparameters": {
+        "n_neighbors": 10,
+        "weights": "distance"
+    },
+    "metrics": {
+        "MAE": 1.5742,
+        "RMSE": 2.3323,
+        "R2": 0.546
+    }
+}
